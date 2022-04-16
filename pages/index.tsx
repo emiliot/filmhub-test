@@ -2,7 +2,25 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 
-const Home: NextPage = () => {
+import { type Album } from '../types/album'
+import { handleAlbumsResponse } from '../utils/album'
+
+const API_URL =
+  'https://rss.applemarketingtools.com/api/v2/us/music/most-played/50/albums.json'
+
+export async function getServerSideProps() {
+  const res = await fetch(API_URL)
+  const data = await res.json()
+  const albums = handleAlbumsResponse(data)
+
+  return { props: { albums } }
+}
+
+export type HomeProps = {
+  albums: Album[]
+}
+
+const Home: NextPage<HomeProps> = (props: HomeProps) => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
       <Head>
