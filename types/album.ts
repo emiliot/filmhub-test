@@ -20,3 +20,6 @@ export type AlbumApiResponse = {
     results: Album[]
   }
 }
+
+export type GenreById = Record<string, Genre>
+export type AlbumsByGenre = Record<string, Album[]>
