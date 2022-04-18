@@ -1,23 +1,29 @@
-# Next.js + Tailwind CSS Example
+# Filmhub Test
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.0)](https://tailwindcss.com/blog/tailwindcss-v3) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+This project was bootstraped using next.js + tailwindcss.
 
-## Deploy your own
+To install dependencies go for `npm i`
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+To run it locally `npm run dev`
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+To see it deployed go to [filmhub-vercel-app](https://filmhub-test.vercel.app/)
 
-## How to use
+## Folder Structure
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+- Components: used for react components and css
+- Hooks: used for shared hooks
+- pages: NextJs default pages
+- types: for Typescript shared types
+- utils: for utility functions to handle data
 
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-# or
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-# or
-pnpm create next-app -- --example with-tailwindcss with-tailwindcss-app
-```
+# Todo:
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+- e2e tests using `cypress` for
+
+  - loading main page -> going to detail page
+  - loading main page -> search title -> going to details
+  - loading detail page by url
+
+- Unit Tests
+  - Test for react components using `jest` and `react-testing-library`
+  - Test for the functions in the utils folder using `jest` only
