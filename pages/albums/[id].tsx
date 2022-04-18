@@ -10,8 +10,12 @@ type AlbumPageProps = {
 }
 
 export async function getServerSideProps({ query }: any) {
-  // TODO: handle possible errors parsing
-  const album = JSON.parse(query.data)
+  let album = {}
+  try {
+    album = JSON.parse(query.data)
+  } catch (e) {
+    console.error('Error parsing album data', e)
+  }
 
   return {
     props: {

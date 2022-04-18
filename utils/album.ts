@@ -43,3 +43,21 @@ export function handleAlbumsResponse(response: AlbumApiResponse): {
 
   return { albums, albumsByGenre, genreById }
 }
+
+export function getFilteredAlbumsByGenre(
+  albumsByGenre: AlbumsByGenre,
+  searchCriteria: string
+): AlbumsByGenre {
+  const filteredAlbumsByGenre: AlbumsByGenre = {}
+
+  for (const [genreId, albums] of Object.entries(albumsByGenre)) {
+    const nextAlbums = albums.filter((album) =>
+      album.name.toLowerCase().includes(searchCriteria.toLowerCase())
+    )
+    if (nextAlbums.length > 0) {
+      filteredAlbumsByGenre[genreId] = nextAlbums
+    }
+  }
+
+  return filteredAlbumsByGenre
+}

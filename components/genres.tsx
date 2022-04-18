@@ -11,10 +11,16 @@ export function Genres(props: GenresProps) {
   return (
     <>
       {Object.keys(genreById)
-        .sort(
-          (genreA, genreB) =>
-            albumsByGenre[genreB].length - albumsByGenre[genreA].length
+        .filter(
+          (genreId) =>
+            albumsByGenre[genreId] && albumsByGenre[genreId].length > 0
         )
+        .sort((genreA, genreB) => {
+          if (albumsByGenre[genreA] && albumsByGenre[genreB])
+            return albumsByGenre[genreB].length - albumsByGenre[genreA].length
+          else if (albumsByGenre[genreA]) return -1
+          else return 1
+        })
         .map((genreId) => {
           return (
             <Genre
