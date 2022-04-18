@@ -3,17 +3,21 @@ import Head from 'next/head'
 import Image from 'next/image'
 
 import { AlbumsByGenre, GenreById, type Album } from '../types/album'
-import { handleAlbumsResponse } from '../utils/album'
-
-const API_URL =
-  'https://rss.applemarketingtools.com/api/v2/us/music/most-played/50/albums.json'
+import {
+  getAlbumsByGenre,
+  getGenreById,
+  handleAlbumsResponse,
+} from '../utils/album'
+import { Genres } from '../components/genres'
 
 export async function getServerSideProps() {
+  const API_URL =
+    'https://rss.applemarketingtools.com/api/v2/us/music/most-played/50/albums.json'
   const res = await fetch(API_URL)
   const data = await res.json()
-  const albums = handleAlbumsResponse(data)
+  const { albums, albumsByGenre, genreById } = handleAlbumsResponse(data)
 
-  return { props: { albums } }
+  return { props: { albums, albumsByGenre, genreById, data } }
 }
 
 export type HomeProps = {
@@ -23,15 +27,18 @@ export type HomeProps = {
 }
 
 const Home: NextPage<HomeProps> = (props: HomeProps) => {
+  console.log(props)
+  const { albumsByGenre, genreById } = props
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
+    <div className="flex min-h-screen flex-col py-2">
       <Head>
         <title>Filmhub Music</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
-        Filmhub Music
+      <main className="flex w-full flex-1 flex-col px-3 py-3 md:px-20 md:py-20">
+        <h1 className="mb-10 text-3xl md:text-5xl">Filmhub Music</h1>
+        <Genres albumsByGenre={albumsByGenre} genreById={genreById} />
       </main>
 
       <footer className="flex h-24 w-full items-center justify-center border-t">
