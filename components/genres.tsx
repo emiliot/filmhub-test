@@ -8,7 +8,6 @@ type GenresProps = {
 
 export function Genres(props: GenresProps) {
   const { albumsByGenre, genreById } = props
-  console.log(genreById)
   return (
     <>
       {Object.keys(genreById)
