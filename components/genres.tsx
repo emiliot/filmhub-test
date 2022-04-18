@@ -11,15 +11,20 @@ export function Genres(props: GenresProps) {
   console.log(genreById)
   return (
     <>
-      {Object.keys(genreById).map((genreId) => {
-        return (
-          <Genre
-            key={genreId}
-            genre={genreById[genreId]}
-            albums={albumsByGenre[genreId]}
-          />
+      {Object.keys(genreById)
+        .sort(
+          (genreA, genreB) =>
+            albumsByGenre[genreB].length - albumsByGenre[genreA].length
         )
-      })}
+        .map((genreId) => {
+          return (
+            <Genre
+              key={genreId}
+              genre={genreById[genreId]}
+              albums={albumsByGenre[genreId]}
+            />
+          )
+        })}
     </>
   )
 }

@@ -10,10 +10,12 @@ export function Genre(props: GenreProps) {
   const { genre, albums } = props
   return (
     <div>
-      <h2>{genre.name}</h2>
-      {albums.map((album, key) => (
-        <AlbumComponent album={album} key={key} />
-      ))}
+      <h2 className="mb-4 text-xl md:text-2xl">{genre.name}</h2>
+      <div className="flex flex-row flex-nowrap overflow-scroll">
+        {albums.map((album, key) => (
+          <AlbumComponent album={album} key={key} />
+        ))}
+      </div>
     </div>
   )
 }

@@ -10,15 +10,14 @@ import {
 } from '../utils/album'
 import { Genres } from '../components/genres'
 
-const API_URL =
-  'https://rss.applemarketingtools.com/api/v2/us/music/most-played/50/albums.json'
-
 export async function getServerSideProps() {
+  const API_URL =
+    'https://rss.applemarketingtools.com/api/v2/us/music/most-played/50/albums.json'
   const res = await fetch(API_URL)
   const data = await res.json()
   const { albums, albumsByGenre, genreById } = handleAlbumsResponse(data)
 
-  return { props: { albums, albumsByGenre, genreById } }
+  return { props: { albums, albumsByGenre, genreById, data } }
 }
 
 export type HomeProps = {
@@ -28,6 +27,7 @@ export type HomeProps = {
 }
 
 const Home: NextPage<HomeProps> = (props: HomeProps) => {
+  console.log(props)
   const { albumsByGenre, genreById } = props
   return (
     <div className="flex min-h-screen flex-col py-2">
@@ -36,8 +36,8 @@ const Home: NextPage<HomeProps> = (props: HomeProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex w-full flex-1 flex-col px-20 py-20">
-        <h1 className="text-4xl">Filmhub Music</h1>
+      <main className="flex w-full flex-1 flex-col px-3 py-3 md:px-20 md:py-20">
+        <h1 className="mb-10 text-3xl md:text-5xl">Filmhub Music</h1>
         <Genres albumsByGenre={albumsByGenre} genreById={genreById} />
       </main>
 
