@@ -5,6 +5,7 @@ export type Genre = {
 }
 
 export type Album = {
+  id: string
   artistId: string
   artistName: string
   artistUrl: string
