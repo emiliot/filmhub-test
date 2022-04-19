@@ -22,5 +22,14 @@ export type AlbumApiResponse = {
   }
 }
 
+export type ReducedAlbum = {
+  releaseDate: string
+  artistName: string
+  artistUrl: string
+  artworkUrl100: string
+  name: string
+  genres: String[]
+}
+
 export type GenreById = Record<string, Genre>
 export type AlbumsByGenre = Record<string, Album[]>

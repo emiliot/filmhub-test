@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { Album } from '../types/album'
+import { getReducedAlbum } from '../utils/album'
 import styles from './album.module.css'
 
 type AlbumProps = {
@@ -13,7 +14,9 @@ export function Album(props: AlbumProps) {
   return (
     <div className={styles.container}>
       <Link
-        href={`/albums/${album.id}?data=${encodeURI(JSON.stringify(album))}`}
+        href={`/albums/${album.id}?data=${encodeURI(
+          JSON.stringify(getReducedAlbum(album))
+        )}`}
       >
         <Image
           priority
