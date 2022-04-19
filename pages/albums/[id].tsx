@@ -37,7 +37,7 @@ const AlbumPage: NextPage<AlbumPageProps> = (props: AlbumPageProps) => {
         </h2>
         <Image
           priority
-          src={album.artworkUrl100}
+          src={album.artworkUrl100 || '/not-found.jpg'}
           height={200}
           width={200}
           alt={`${album.name || ''} image`}
@@ -46,7 +46,7 @@ const AlbumPage: NextPage<AlbumPageProps> = (props: AlbumPageProps) => {
           <h3 className="text-md text-ellipsis font-semibold">{album.name}</h3>
           <h4 className="text-ellipsis text-sm">{releaseDate}</h4>
           <div className="flex flex-row">
-            {album.genres.map((genre, index) => (
+            {album.genres?.map((genre, index) => (
               <span
                 className={`text-sm ${index > 0 ? 'ml-1' : ''}`}
                 key={genre.genreId}

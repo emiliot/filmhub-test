@@ -4,6 +4,7 @@ import {
   Genre,
   AlbumsByGenre,
   GenreById,
+  ReducedAlbum,
 } from '../types/album'
 
 export function getAlbumsByGenre(albums: Album[]): AlbumsByGenre {
@@ -60,4 +61,19 @@ export function getFilteredAlbumsByGenre(
   }
 
   return filteredAlbumsByGenre
+}
+
+export function getLimitedChars(input: string, limit: number): string {
+  return input.length > 30 ? `${input.slice(0, 30)}...` : input
+}
+
+export function getReducedAlbum(album: Album): ReducedAlbum {
+  return {
+    releaseDate: album.releaseDate,
+    artistUrl: album.artistUrl,
+    artistName: getLimitedChars(album.artistName, 30),
+    artworkUrl100: album.artworkUrl100,
+    name: getLimitedChars(album.name, 30),
+    genres: album.genres?.map((genre) => getLimitedChars(genre.name, 15)),
+  }
 }
